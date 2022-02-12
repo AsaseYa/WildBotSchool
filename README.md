@@ -1,0 +1,2 @@
+# WildBotSchool
+Bot for discord
