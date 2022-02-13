@@ -1,8 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
-let failMsg = "";
 
-function failEmbedMsg(command, settings) {
+function failEmbedMsg(command, prefix, failMsg) {
     const failEmbed = new MessageEmbed()
         .setColor("#36393F")
         .setTitle(`**REPORT** : \`${command.help.name}\``)
@@ -10,8 +9,8 @@ function failEmbedMsg(command, settings) {
         .addField(
             "Utilisation",
             command.help.usage
-                ? `${settings.prefix}${command.help.name} ${command.help.usage}`
-                : `${settings.prefix}${command.help.name}`,
+                ? `${prefix}${command.help.name} ${command.help.usage}`
+                : `${prefix}${command.help.name}`,
             true
         );
     if (command.help.aliases.length > 1) {
@@ -24,17 +23,17 @@ function failEmbedMsg(command, settings) {
     return failEmbed;
 }
 
-module.exports.noMention = (message, command, settings) => {
-    failMsg = `La commande \`${command.help.name}\` demande une mention (@Darnaf).`;
-    message.reply(failEmbedMsg(command, settings));
+module.exports.noMention = (messageCreate, command, prefix) => {
+    let failMsg = `La commande \`${command.help.name}\` demande une mention (@Anas).`;
+    messageCreate.channel.send({embeds : [failEmbedMsg(command, prefix, failMsg)]});
 };
 
-module.exports.noArgs = (message, command, settings) => {
-    failMsg = `La commande \`${command.help.name}\` demande un argument.`;
-    message.reply(failEmbedMsg(command, settings));
+module.exports.noArgs = (messageCreate, command, prefix) => {
+    let failMsg = `La commande \`${command.help.name}\` demande un argument.`;
+    messageCreate.channel.send({embeds : [failEmbedMsg(command, prefix, failMsg)]});
 };
 
-module.exports.noPermissions = (message, command, settings) => {
-    failMsg = `Tu n'as pas les droits pour utiliser la commande \`${command.help.name}\`.`;
-    message.reply(failEmbedMsg(command, settings));
+module.exports.noPermissions = (messageCreate, command, prefix) => {
+    let failMsg = `Tu n'as pas les droits pour utiliser la commande \`${command.help.name}\`.`;
+    messageCreate.channel.send({embeds : [failEmbedMsg(command, prefix, failMsg)]});
 };

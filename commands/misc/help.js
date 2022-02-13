@@ -9,7 +9,7 @@ module.exports.run = (client, messageCreate, commandName, args, prefix) => {
                .setColor("#36393F")
                .addField(
                     "Liste des commandes",
-                    `Une liste de toutes les sous-catégories disponibles et leurs commandes.\nPour plus d'informations sur une commande, tapez \`${prefix}help command_name>\`.`
+                    `Une liste de toutes les sous-catégories disponibles et leurs commandes.\nPour plus d'informations sur une commande, tapez \`${prefix}help command_name\`.`
                );
           for (const category of categoryList) {
                embed.addField(

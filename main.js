@@ -8,16 +8,6 @@ myIntents.add(Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS, Intent
 
 const client = new Client({ intents: myIntents }); //crée le bot
 
-
-// Music Bot
-// const { Player } = require("discord-music-player");
-// const player = new Player(client, {
-//     leaveOnEmpty: false, // This options are optional.
-// });
-
-
-
-
 ["commands"].forEach((x) => (client[x] = new Collection())); //crée une collection des commandes
 
 //lancement du command handler
